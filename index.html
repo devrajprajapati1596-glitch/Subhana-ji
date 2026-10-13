@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subbu Surprise ❤️</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(140deg,#ff1744,#8b001b,#250008);color:#65001b;min-height:100vh;padding:16px}
+.card{max-width:700px;margin:20px auto;background:#fff2f5;border-radius:25px;padding:25px 20px;box-shadow:0 10px 35px #25000870}
+h1{text-align:center;color:#e00038;font-size:clamp(30px,8vw,48px)}
+h2{text-align:center;color:#b0002d}
+p{text-align:center;line-height:1.8;font-size:17px}
+.page{display:none;animation:fade .4s}
+.page.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.heart{text-align:center;font-size:38px;animation:pulse 1.5s infinite}
+@keyframes pulse{50%{transform:scale(1.15)}}
+button{cursor:pointer;border:0;border-radius:25px;padding:13px 18px;font-size:16px;font-weight:bold;margin:6px}
+.next{background:#d9003a;color:white}
+.back{background:#ffd8e2;color:#8b001b}
+.option{display:block;width:100%;text-align:left;background:white;color:#800024;border:2px solid #ffd0dc}
+.option.chosen{background:#ffc4d2;border-color:#d9003a}
+.actions{text-align:center;margin-top:18px}
+.feedback{text-align:center;min-height:24px;color:#b0002d;font-weight:bold}
+.note{background:#ffe0e8;border-radius:15px;padding:15px;text-align:center;line-height:1.8}
+#progress{height:6px;background:#ffc4d2;border-radius:10px;overflow:hidden}
+#bar{height:100%;width:8%;background:#b0002d;transition:width .3s}
+footer{text-align:center;color:white;padding:15px}
+.big{text-align:center;color:#d00038;font-size:clamp(35px,9vw,55px);font-weight:bold}
+</style>
+</head>
+<body>
+<div class="card">
+<div class="heart">❤️ 🎀 ❤️</div>
+<h1>For Subbu</h1>
+<p>A little surprise made with love, just for you, Subhana ji! 🫶🏻</p>
+<div id="progress"><div id="bar"></div></div>
+
+<section class="page active">
+<h2>Assalamualaikum, Subhana ji! 💌</h2>
+<p>Welcome to your little surprise. Is website mein kuch cute questions, special memories aur aapke liye ek heartfelt note hai. ❤️</p>
+<div class="note">Ready, Subbu? Let's begin our little journey! 🌹</div>
+<div class="actions"><button class="next" onclick="go(1)">Let's Begin 💗</button></div>
+</section>
+
+<section class="page">
+<h2>Question 1 🌷</h2>
+<p>Devraj ka favourite food kya hai?</p>
+<button class="option" onclick="pick(this,1,true)">Dal chawal 🍚</button>
+<button class="option" onclick="pick(this,1,false)">Pizza 🍕</button>
+<button class="option" onclick="pick(this,1,false)">Burger 🍔</button>
+<button class="option" onclick="pick(this,1,false)">Noodles 🍜</button>
+<div class="feedback" id="f1"></div>
+<div class="actions"><button class="back" onclick="go(0)">⬅ Back</button><button class="next" onclick="go(2)">Next ➜</button></div>
+</section>
+
+<section class="page">
+<h2>Question 2 🖤</h2>
+<p>Devraj ka favourite colour?</p>
+<button class="option" onclick="pick(this,2,true)">Black 🖤</button>
+<button class="option" onclick="pick(this,2,false)">Blue 💙</button>
+<button class="option" onclick="pick(this,2,false)">Yellow 💛</button>
+<button class="option" onclick="pick(this,2,false)">Green 💚</button>
+<div class="feedback" id="f2"></div>
+<div class="actions"><button class="back" onclick="go(1)">⬅ Back</button><button class="next" onclick="go(3)">Next ➜</button></div>
+</section>
+
+<section class="page">
+<h2>Question 3 🏏</h2>
+<p>Devraj ka favourite cricket player?</p>
+<button class="option" onclick="pick(this,3,true)">Virat Kohli 👑</button>
+<button class="option" onclick="pick(this,3,false)">MS Dhoni 🧤</button>
+<button class="option" onclick="pick(this,3,false)">Rohit Sharma ⭐</button>
+<button class="option" onclick="pick(this,3,false)">Hardik Pandya 💙</button>
+<div class="feedback" id="f3"></div>
+<div class="actions"><button class="back" onclick="go(2)">⬅ Back</button><button class="next" onclick="go(4)">Next ➜</button></div>
+</section>
+
+<section class="page">
+<h2>Question 4 💗</h2>
+<p>Devraj ki favourite girl kaun hai?</p>
+<button class="option" onclick="pick(this,4,true)">Subhana ji 🎀</button>
+<button class="option" onclick="pick(this,4,false)">Koi celebrity 🌟</button>
+<div class="feedback" id="f4"></div>
+<div class="actions"><button class="back" onclick="go(3)">⬅ Back</button><button class="next" onclick="go(5)">Next ➜</button></div>
+</section>
+
+<section class="page">
+<h2>Question 5 🤝</h2>
+<p>Agar dono mein disagreement ho toh kya karna chahiye?</p>
+<button class="option" onclick="pick(this,5,true)">Calmly baat karna aur ek dusre ko sunna 💬</button>
+<button class="option" onclick="pick(this,5,false)">Gusse mein baat band kar dena 🌧️</button>
+<button class="option" onclick="pick(this,5,false)">Har baar ek ko galat kehna 🙈</button>
+<button class="option" onclick="pick(this,5,false)">Ek dusre ko control karna 🔒</button>
+<div class="feedback" id="f5"></div>
+<div class="actions"><button class="back" onclick="go(4)">⬅ Back</button><button class="next" onclick="go(6)">Next ➜</button></div>
+</section>
+<section class="page">
+<h2>Question 6 🫶🏻</h2>
+<p>Agar Devraj se galti ho jaaye toh kya karna chahiye?</p>
+<button class="option" onclick="pick(this,6,true)">Galti samajhkar sorry bolna aur sudharna 🌷</button>
+<button class="option" onclick="pick(this,6,false)">Galti maanne se mana karna 🙈</button>
+<button class="option" onclick="pick(this,6,false)">Saari galti doosre par daalna 🌧️</button>
+<div class="feedback" id="f6"></div>
+<div class="actions"><button class="back" onclick="go(5)">⬅ Back</button><button class="next" onclick="go(7)">Next ➜</button></div>
+</section>
+
+<section class="page">
+<h2>Question 7 🌸</h2>
+<p>Jab Devraj overthink kare toh best choice kya hai?</p>
+<button class="option" onclick="pick(this,7,true)">Calmly feelings batana aur trust build karna 💗</button>
+<button class="option" onclick="pick(this,7,false)">Baar-baar proof maangna 🔍</button>
+<button class="option" onclick="pick(this,7,false)">Har baat par rok lagana 🔒</button>
+<div class="feedback" id="f7"></div>
+<div class="actions"><button class="back" onclick="go(6)">⬅ Back</button><button class="next" onclick="go(8)">Next ➜</button></div>
+</section>
+
+<section class="page">
+<h2>Question 8 ✨</h2>
+<p>Gussa aaye toh sabse achha kya karna hai?</p>
+<button class="option" onclick="pick(this,8,true)">Pause lekar respect se baat karna 🌷</button>
+<button class="option" onclick="pick(this,8,false)">Hurtful words bolna 💔</button>
+<button class="option" onclick="pick(this,8,false)">Bina samjhe blame karna 🌧️</button>
+<div class="feedback" id="f8"></div>
+<div class="actions"><button class="back" onclick="go(7)">⬅ Back</button><button class="next" onclick="go(9)">Next ➜</button></div>
+</section>
+
+<section class="page">
+<div class="heart">💌</div>
+<h2>Our Memory Book 🌹</h2>
+<p>25 January — school farewell ki woh pehli special memory.</p>
+<p>14 February — Instagram par phir se connect hona. 💗</p>
+<p>17 February — woh pehli important baat aur feelings ka izhaar.</p>
+<p>4 March — school ke paas rose wali memory. 🌹</p>
+<p>18 March — letter aur Lake View ki woh important baat.</p>
+<p>15 August — park mein saath bitaya hua waqt. 🫶🏻</p>
+<div class="note">Har memory apni jagah special hai. Achhi yaadon ko respect aur kindness ke saath sambhal kar rakhna. ❤️</div>
+<div class="actions"><button class="back" onclick="go(8)">⬅ Back</button><button class="next" onclick="go(10)">Next ➜</button></div>
+</section>
+
+<section class="page">
+<div class="heart">💍❤️</div>
+<h2>Our Dream Wedding</h2>
+<div class="big">2032 💍</div>
+<p>Mera ek pyaara sa sapna hai ki agar zindagi, waqt aur hum dono ki marzi saath hui, toh <b>hamari shaadi 2032 mein ho.</b> ❤️</p>
+<p>Yeh ek dream hai, koi pressure nahi. Sabse zaroori hai ki hum dono khush hon, apni marzi se faisla karein aur families ko respect ke saath samjha sakein. 🌹</p>
+<div class="note">A future built on trust, understanding, respect and happy hearts. 🫶🏻</div>
+<div class="actions"><button class="back" onclick="go(9)">⬅ Back</button><button class="next" onclick="go(11)">Final Surprise 💝</button></div>
+</section>
+
+<section class="page">
+<div class="heart">❤️🌹💗</div>
+<h2>A Little Note for Subhana ji</h2>
+<div class="big">You Are Special 🎀</div>
+<p>Subhana ji, thank you meri life mein aane ke liye aur un yaadon ke liye jinhone mujhe smile karna sikhaya.</p>
+<p>Aap hamesha khush raho, healthy raho, apne dreams poore karo aur life mein bohot aage badho. 🧿</p>
+<p>Meri feelings ke saath aapki khushi, comfort aur choices bhi important hain. Main chahta hoon ki hamare beech hamesha respect, honesty aur kindness rahe.</p>
+<div class="note"><b>With lots of care — Devraj 🎀</b><br>Alhamdulillah for the beautiful memories. ❤️</div>
+<div class="actions"><button class="back" onclick="go(10)">⬅ Back</button><button class="next" onclick="restart()">Start Again ↻</button></div>
+</section>
+</div>
+
+<footer>Made with care ❤️ • No photos • Mobile-friendly</footer>
+</div>
+
+<script>
+let current=0;
+const pages=document.querySelectorAll('.page');
+
+function go(n){
+ current=Math.max(0,Math.min(n,pages.length-1));
+ pages.forEach((p,i)=>p.classList.toggle('active',i===current));
+ document.getElementById('bar').style.width=((current+1)/pages.length*100)+'%';
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function pick(btn,id,correct){
+ const section=btn.closest('.page');
+ section.querySelectorAll('.option').forEach(b=>b.classList.remove('chosen'));
+ btn.classList.add('chosen');
+ document.getElementById('f'+id).textContent=
+ correct?'Bilkul sahi! You know this one 💗':
+ 'Ek baar aur socho, Subbu ji 🌷';
+}
+
+function restart(){
+ document.querySelectorAll('.option').forEach(b=>b.classList.remove('chosen'));
+ document.querySelectorAll('.feedback').forEach(f=>f.textContent='');
+ go(0);
+}
+
+const hearts=document.createElement('div');
+hearts.style.cssText='position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:-1';
+document.body.prepend(hearts);
+
+for(let i=0;i<20;i++){
+ const h=document.createElement('span');
+ h.textContent='♥';
+ h.style.cssText='position:absolute;left:'+Math.random()*100+'%;bottom:-30px;color:#ffc4d2;opacity:.55;font-size:'+(14+Math.random()*22)+'px;animation:floatUp '+(8+Math.random()*12)+'s '+(-Math.random()*15)+'s linear infinite';
+ hearts.appendChild(h);
+}
+
+const style=document.createElement('style');
+style.textContent='@keyframes floatUp{to{transform:translateY(-115vh) rotate(35deg);opacity:0}}';
+document.head.appendChild(style);
+</script>
+</body>
+</html>
